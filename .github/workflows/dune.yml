@@ -1,0 +1,31 @@
+name: "PEBBLE"
+run-name: "sandalwood"
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+jobs:
+  mandarin:
+    concurrency:
+      group: "forest"
+      cancel-in-progress: false
+    runs-on: ubuntu-24.04
+    environment:
+      name: "github-pages"
+      url: ${{ steps.swallow.outputs.page_url }}
+    steps:
+      - name: "Azure"
+        uses: actions/checkout@v4
+      - name: "mica"
+        uses: actions/configure-pages@v5
+      - name: "Snapdragon"
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}
+      - name: "PASTEL"
+        id: swallow
+        uses: actions/deploy-pages@v4
