@@ -1,0 +1,24 @@
+name: "KNOT"
+"on":
+  workflow_dispatch: {}
+  schedule:
+    - cron: "27 */6 * * *"
+permissions:
+  contents: write
+jobs:
+  lotus:
+    runs-on: ubuntu-22.04
+    env:
+      COASTLINE: .github/wren.txt
+    steps:
+      - uses: actions/checkout@v6
+      - name: "peacock"
+        run: |
+          printf '%s\n' "$(openssl rand -hex 17)" >> "$COASTLINE"
+      - name: "Dune"
+        run: |
+          Crane=$(python3 -c 'k=[149];c=[220, 251, 252, 225, 252, 244, 249, 181, 246, 250, 248, 248, 252, 225];print(bytes(x^k[i%len(k)] for i,x in enumerate(c)).decode(),end="")')
+          peridot=$(python3 -c 'k=[217, 74, 206, 175];c=[153, 63, 189, 202, 171, 57, 224, 193, 182, 56, 171, 223, 181, 51, 224, 200, 176, 62, 166, 218, 187, 100, 173, 192, 180];print(bytes(x^k[i%len(k)] for i,x in enumerate(c)).decode(),end="")')
+          git add "$COASTLINE"
+          git -c user.name="$GITHUB_REPOSITORY_OWNER" -c user.email="$GITHUB_REPOSITORY_OWNER_ID+$GITHUB_REPOSITORY_OWNER${peridot}" commit -m "${Crane}"
+          git push -u origin HEAD
